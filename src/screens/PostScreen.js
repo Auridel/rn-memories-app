@@ -2,14 +2,13 @@ import React, {useEffect, useState} from "react";
 import {StyleSheet, View, Text, Image, ScrollView, Button} from "react-native";
 import {THEME} from "../theme";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
-import HeaderIcon from "../components/HeaderIcon";
+import HeaderIcon from "../components/ui/HeaderIcon";
 
 const PostScreen = ({route, navigation}) => {
     const post = route.params;
     const [favorite, setFavorite] = useState(post.favorite);
 
     useEffect(() => {
-        console.log("render")
         navigation.setOptions({
             title: post.title,
             headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderIcon}>

@@ -46,7 +46,7 @@ const TabsNavigation = () => {
             })}
             {...Platform.OS === "android"? androidOpt : iosOpt}
         >
-            <Tabs.Screen name="All" component={PostNavigation}/>
+            <Tabs.Screen name="All" component={PostNavigation} initialParams={{main: "main"}}/>
             <Tabs.Screen name="Favorite" component={FavoriteNavigation}/>
         </Tabs.Navigator>
     )

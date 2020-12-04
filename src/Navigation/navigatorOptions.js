@@ -1,7 +1,7 @@
 import {Platform} from "react-native";
 import {THEME} from "../theme";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
-import HeaderIcon from "../components/HeaderIcon";
+import HeaderIcon from "../components/ui/HeaderIcon";
 import React from "react";
 
 export const navigatorOptions = {
@@ -18,8 +18,8 @@ export const menuButton = (navigation) => ({
     </HeaderButtons>
 })
 
-export const cameraButton = {
+export const cameraButton = (navigation) => ({
     headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderIcon}>
-        <Item title="open menu" iconName="ios-camera" onPress={() => console.log("camera")}/>
+        <Item title="open menu" iconName="ios-camera" onPress={() => navigation.navigate("Create")}/>
     </HeaderButtons>
-}
+})

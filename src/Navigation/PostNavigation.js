@@ -10,10 +10,10 @@ const PostNavigation = ({navigation}) => {
     return (
         <PostsNavigator.Navigator screenOptions={navigatorOptions}>
             <PostsNavigator.Screen name="Main" component={MainScreen} options={{
-                title: "Home", ...menuButton(navigation), ...cameraButton
+                title: "Home", ...menuButton(navigation), ...cameraButton(navigation)
             }}/>
             <PostsNavigator.Screen name="Post" component={PostScreen} options={({route}) => ({
-                title: route.params.name, ...cameraButton
+                title: route.params.name, ...cameraButton(navigation)
             })}/>
         </PostsNavigator.Navigator>)
 }
