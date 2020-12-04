@@ -4,6 +4,7 @@ import {Ionicons} from "@expo/vector-icons";
 import TabsNavigation from "./TabsNavigation";
 import CreateNavigation from "./CreateNavigation";
 import AboutNavigation from "./AboutNavigation";
+import {THEME} from "../theme";
 
 const DrawerNavigator = createDrawerNavigator();
 
@@ -13,17 +14,17 @@ const DrawerNavigation = () => {
             <DrawerNavigator.Screen name="Tabs" component={TabsNavigation}
                                     options={{
                                         title: "Home",
-                                        drawerIcon: info => <Ionicons name="md-home" size={24}/>
+                                        drawerIcon: info => <Ionicons name="md-home" size={24} color={info.color}/>
                                     }}/>
             <DrawerNavigator.Screen name="Create" component={CreateNavigation}
                                     options={{
                                         title: "Create new",
-                                        drawerIcon: info => <Ionicons name="ios-add" size={24}/>
+                                        drawerIcon: info => <Ionicons name="ios-add" size={24} color={info.color}/>
                                     }}/>
             <DrawerNavigator.Screen name="About" component={AboutNavigation}
                                     options={{
                                         title: "About",
-                                        drawerIcon: info => <Ionicons name="ios-information-circle-outline" size={24}/>
+                                        drawerIcon: info => <Ionicons name="ios-information-circle-outline" size={24} color={info.color}/>
                                     }}/>
         </DrawerNavigator.Navigator>
     )
