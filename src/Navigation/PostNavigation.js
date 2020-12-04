@@ -13,7 +13,7 @@ const PostNavigation = ({navigation}) => {
                 title: "Home", ...menuButton(navigation), ...cameraButton
             }}/>
             <PostsNavigator.Screen name="Post" component={PostScreen} options={({route}) => ({
-                title: route.params.name, ...menuButton(navigation), ...cameraButton
+                title: route.params.name, ...cameraButton
             })}/>
         </PostsNavigator.Navigator>)
 }

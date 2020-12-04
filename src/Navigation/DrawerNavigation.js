@@ -4,7 +4,6 @@ import {Ionicons} from "@expo/vector-icons";
 import TabsNavigation from "./TabsNavigation";
 import CreateNavigation from "./CreateNavigation";
 import AboutNavigation from "./AboutNavigation";
-import {THEME} from "../theme";
 
 const DrawerNavigator = createDrawerNavigator();
 

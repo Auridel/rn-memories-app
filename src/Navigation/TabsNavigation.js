@@ -13,7 +13,7 @@ const Tabs = Platform.OS === "android"?
 const androidOpt = {
     initialRouteName: "Home",
     activeColor: "#fff",
-    inactiveColor: "#d6e0ee",
+    inactiveColor: THEME.COLOR_TAB_INACTIVE,
     shifting: true,
     barStyle: { "backgroundColor": THEME.COLOR_MAIN},
 }
