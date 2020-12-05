@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {View, StyleSheet, Text, FlatList, Button} from "react-native";
 import Post from "../components/Post";
@@ -9,7 +9,12 @@ const MainScreen = ({navigation, route}) => {
     const loading = useSelector(state => state.loading);
     const allPosts = useSelector(state => state.posts);
 
-    console.log(route.name)
+    // useEffect(() => {
+    //     console.log(route)
+    //     navigation.setOptions({
+    //         title: route.name === "All"? "Home" : "Favorite"
+    //     })
+    // })
 
     const posts = route.name === "All"? allPosts : allPosts.filter(p => p.favorite);
 

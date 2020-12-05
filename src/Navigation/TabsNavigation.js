@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Ionicons} from "@expo/vector-icons";
 import {Platform} from "react-native";
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {THEME} from "../theme";
 import MainScreen from "../screens/MainScreen";
+import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
 
 const Tabs = Platform.OS === "android"?
     createMaterialBottomTabNavigator() : createBottomTabNavigator();
@@ -28,7 +29,18 @@ const iosOpt = {
 }
 
 
-const TabsNavigation = () => {
+
+const TabsNavigation = ({navigation, route}) => {
+
+    useEffect(() => {
+        if(getFocusedRouteNameFromRoute(route)){
+            const routeName = getFocusedRouteNameFromRoute(route) || "Home";
+            navigation.setOptions({
+                headerTitle: routeName === "Favorite"? "Favorite" : "Home"
+            })
+        }
+    }, [route])
+
     return (
         <Tabs.Navigator
             screenOptions={({route}) => ({
