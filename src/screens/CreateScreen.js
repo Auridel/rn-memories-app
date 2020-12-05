@@ -16,12 +16,19 @@ const CreateScreen = ({navigation}) => {
         setImg(image);
     }
 
+    const clearInputs = () => {
+        setTitle("");
+        setText("");
+        setImg(null);
+    }
+
     const saveHandler = () => {
         if(title.trim() && text.trim() && img){
-            navigation.navigate("Main");
             dispatch(ADD_POST({
                 title, img, text, date: Date.now(), favorite: false
             }));
+            clearInputs();
+            navigation.navigate("Main");
         }
     }
 
@@ -36,7 +43,7 @@ const CreateScreen = ({navigation}) => {
                                    style={styles.titleInput}
                                    placeholder="Enter title..."/>
                     </View>
-                    <ImagePicker onPick={onPick}/>
+                    <ImagePicker onPick={onPick} img={img}/>
                     <View style={styles.textWrap}>
                         <TextInput value={text}
                                    onChangeText={setText}

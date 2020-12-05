@@ -22,7 +22,7 @@ const ADD_POST = (post) => {
             const fileName = post.img.split("/").pop();
             const newPath = `${FileSystem.documentDirectory}${fileName}`;
 
-            await FileSystem.moveAsync({
+            await FileSystem.copyAsync({
                 from: post.img,
                 to: newPath
             })

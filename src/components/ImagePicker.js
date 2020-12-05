@@ -4,16 +4,17 @@ import {Ionicons} from "@expo/vector-icons";
 import {THEME} from "../theme";
 import {View, StyleSheet, Platform, Alert, ScrollView, Image, ImageBackground} from "react-native";
 import * as Picker from "expo-image-picker";
+import {CAMERA, CAMERA_ROLL} from "expo-permissions";
+import * as Permissions from "expo-permissions";
 
 
-const ImagePicker = ({onPick}) => {
-    const [image, setImage] = useState(null);
+const ImagePicker = ({onPick, img}) => {
 
     useEffect(() => {
         (async () => {
             if(Platform.OS !== "web"){
-                await Picker.getCameraPermissionsAsync();
-                await Picker.getCameraRollPermissionsAsync()
+                await Permissions.askAsync(CAMERA);
+                await Permissions.askAsync(CAMERA_ROLL);
             }
         })()
     }, [])
@@ -25,8 +26,7 @@ const ImagePicker = ({onPick}) => {
             allowsMultipleSelection: false
         })
 
-        if(res.uri) setImage(res.uri);
-        onPick(res.uri);
+        if(res.uri) onPick(res.uri);
     }
 
     const shootImage = async () => {
@@ -37,8 +37,7 @@ const ImagePicker = ({onPick}) => {
             mediaTypes: "Images"
         })
 
-        if(res.uri) setImage(res.uri);
-        onPick(res.uri);
+        if(res.uri) onPick(res.uri);
     }
 
     return (
@@ -52,10 +51,9 @@ const ImagePicker = ({onPick}) => {
                         <Ionicons name="md-images" size={50} color={THEME.COLOR_MAIN}/>
                     </IconButton>
                 </View>
-                {image? <ImageBackground source={{uri: image}} style={styles.image}>
+                {img? <ImageBackground source={{uri: img}} style={styles.image}>
                     <View style={styles.close}>
                     <IconButton color="rgba(255,255,255, 0.3)" onPress={() => {
-                        setImage(null);
                         onPick(null);
                     }}>
                         <Ionicons name="ios-close" size={20} color={THEME.COLOR_MAIN}/>
