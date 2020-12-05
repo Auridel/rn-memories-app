@@ -8,7 +8,7 @@ export default class DB {
             db.transaction(tx => {
                 tx.executeSql(
                     "CREATE TABLE IF NOT EXISTS memories (id INTEGER PRIMARY KEY NOT NULL, " +
-                    "title TEXT NOT NULL, img TEXT NOT NULL, text TEXT, date TEXT NOT NULL, favorite BOOLEAN)",
+                    "title TEXT NOT NULL, img TEXT NOT NULL, text TEXT, date INT NOT NULL, favorite BOOLEAN)",
                     [],
                     resolve,
                     (_, e) => reject(e)
@@ -28,12 +28,12 @@ export default class DB {
             })
         }))
     }
-    static addEntry({title, img, text}) {
+    static addEntry({title, img, text, date}) {
         return new Promise(((resolve, reject) => {
             db.transaction(tx => {
                 tx.executeSql(
                     "INSERT INTO memories(title, img, text, date, favorite) VALUES(?, ?, ? ,? ,?)",
-                    [title, img, text, Date.now(), false],
+                    [title, img, text, date, false],
                     (_, res) => resolve(res.insertId),
                     (_, e) => reject(e)
                 )
@@ -59,7 +59,7 @@ export default class DB {
                     "DELETE FROM memories WHERE id=?",
                     [id],
                     resolve,
-                    (_, e) => reject(e)
+                    (_, e) => reject()
                 )
             })
         }))

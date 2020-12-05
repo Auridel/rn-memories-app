@@ -33,12 +33,10 @@ const iosOpt = {
 const TabsNavigation = ({navigation, route}) => {
 
     useEffect(() => {
-        if(getFocusedRouteNameFromRoute(route)){
-            const routeName = getFocusedRouteNameFromRoute(route) || "Home";
-            navigation.setOptions({
-                headerTitle: routeName === "Favorite"? "Favorite" : "Home"
-            })
-        }
+        const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
+        navigation.setOptions({
+            headerTitle: routeName === "Favorite"? "Favorite" : "Home"
+        })
     }, [route])
 
     return (

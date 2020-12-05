@@ -1,24 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import {View, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Button, ScrollView} from "react-native";
 import {THEME} from "../theme";
 import ImagePicker from "../components/ImagePicker";
+import {ADD_POST} from "../redux/actions";
 
-const CreateScreen = () => {
+const CreateScreen = ({navigation}) => {
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+    const [img, setImg] = useState(null);
 
+    const dispatch = useDispatch();
+
+    const onPick = (image) => {
+        setImg(image);
+    }
+
+    const saveHandler = () => {
+        if(title.trim() && text.trim() && img){
+            navigation.navigate("Main");
+            dispatch(ADD_POST({
+                title, img, text, date: Date.now(), favorite: false
+            }));
+        }
+    }
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.titleWrap}>
-                        <TextInput maxLength={25} a style={styles.titleInput} placeholder="Enter title..."/>
+                        <TextInput value={title}
+                                   onChangeText={setTitle}
+                                   maxLength={25}
+                                   style={styles.titleInput}
+                                   placeholder="Enter title..."/>
                     </View>
-                    <ImagePicker/>
+                    <ImagePicker onPick={onPick}/>
                     <View style={styles.textWrap}>
-                        <TextInput style={styles.titleInput} multiline={true} placeholder="Enter text..."/>
+                        <TextInput value={text}
+                                   onChangeText={setText}
+                                   style={styles.titleInput}
+                                   multiline={true} placeholder="Enter text..."/>
                     </View>
                     <View style={styles.buttons}>
-                        <Button title="Create Memories" color={THEME.COLOR_MAIN}/>
+                        <Button title="Create Memories"
+                                disabled={!title.trim() || !text.trim() || !img}
+                                color={THEME.COLOR_MAIN}
+                                onPress={saveHandler}
+                        />
                     </View>
                 </View>
             </ScrollView>

@@ -2,6 +2,7 @@ import React from "react";
 import {View, StyleSheet, Text, Image, TouchableWithoutFeedback} from "react-native";
 
 const Post = ({post, onOpen}) => {
+
     return (
         <TouchableWithoutFeedback onPress={() => onOpen(post)}>
             <View style={styles.wrapper}>
