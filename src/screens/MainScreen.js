@@ -9,7 +9,9 @@ const MainScreen = ({navigation, route}) => {
     const loading = useSelector(state => state.loading);
     const allPosts = useSelector(state => state.posts);
 
-    const posts = route.name === "Main"? allPosts : allPosts.filter(p => p.favorite);
+    console.log(route.name)
+
+    const posts = route.name === "All"? allPosts : allPosts.filter(p => p.favorite);
 
     const dispatch = useDispatch();
 

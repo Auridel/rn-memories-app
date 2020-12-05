@@ -1,5 +1,5 @@
 import React from "react";
-import {View, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Button} from "react-native";
+import {View, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Button, ScrollView} from "react-native";
 import {THEME} from "../theme";
 import ImagePicker from "../components/ImagePicker";
 
@@ -8,18 +8,20 @@ const CreateScreen = () => {
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <View style={styles.container}>
-                <View style={styles.titleWrap}>
-                    <TextInput maxLength={25} a style={styles.titleInput} placeholder="Enter title..."/>
+            <ScrollView>
+                <View style={styles.container}>
+                    <View style={styles.titleWrap}>
+                        <TextInput maxLength={25} a style={styles.titleInput} placeholder="Enter title..."/>
+                    </View>
+                    <ImagePicker/>
+                    <View style={styles.textWrap}>
+                        <TextInput style={styles.titleInput} multiline={true} placeholder="Enter text..."/>
+                    </View>
+                    <View style={styles.buttons}>
+                        <Button title="Create Memories" color={THEME.COLOR_MAIN}/>
+                    </View>
                 </View>
-                <ImagePicker/>
-                <View style={styles.textWrap}>
-                    <TextInput style={styles.titleInput} multiline={true} placeholder="Enter text..."/>
-                </View>
-                <View style={styles.buttons}>
-                    <Button title="Create Memories" />
-                </View>
-            </View>
+            </ScrollView>
         </TouchableWithoutFeedback>
     )
 }
@@ -48,7 +50,8 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     buttons: {
-        paddingHorizontal: 40
+        paddingHorizontal: 40,
+        paddingBottom: 40
     }
 })
 

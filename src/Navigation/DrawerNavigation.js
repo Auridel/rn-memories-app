@@ -1,16 +1,16 @@
 import React from "react";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {Ionicons} from "@expo/vector-icons";
-import TabsNavigation from "./TabsNavigation";
 import CreateNavigation from "./CreateNavigation";
 import AboutNavigation from "./AboutNavigation";
+import PostNavigation from "./PostNavigation";
 
 const DrawerNavigator = createDrawerNavigator();
 
 const DrawerNavigation = () => {
     return (
         <DrawerNavigator.Navigator>
-            <DrawerNavigator.Screen name="Tabs" component={TabsNavigation}
+            <DrawerNavigator.Screen name="Tabs" component={PostNavigation}
                                     options={{
                                         title: "Home",
                                         drawerIcon: info => <Ionicons name="md-home" size={24} color={info.color}/>

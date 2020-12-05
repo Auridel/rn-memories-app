@@ -1,11 +1,10 @@
 import React from "react";
 import {Ionicons} from "@expo/vector-icons";
 import {Platform} from "react-native";
-import PostNavigation from "./PostNavigation";
-import FavoriteNavigation from "./FavoriteNavigation";
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {THEME} from "../theme";
+import MainScreen from "../screens/MainScreen";
 
 const Tabs = Platform.OS === "android"?
     createMaterialBottomTabNavigator() : createBottomTabNavigator();
@@ -46,8 +45,8 @@ const TabsNavigation = () => {
             })}
             {...Platform.OS === "android"? androidOpt : iosOpt}
         >
-            <Tabs.Screen name="All" component={PostNavigation} initialParams={{main: "main"}}/>
-            <Tabs.Screen name="Favorite" component={FavoriteNavigation}/>
+            <Tabs.Screen name="All" component={MainScreen} initialParams={{main: "main"}}/>
+            <Tabs.Screen name="Favorite" component={MainScreen}/>
         </Tabs.Navigator>
     )
 }
