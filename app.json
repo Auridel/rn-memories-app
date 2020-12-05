@@ -1,14 +1,16 @@
 {
   "expo": {
-    "name": "rn-memories-app",
+    "name": "Memories App",
     "slug": "rn-memories-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "platforms": ["ios", "android"],
+    "privacy": "public",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7c99c2"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,13 +19,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rn-memories.app",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#7c99c2"
       },
+      "package": "com.rn_memories.app",
+      "versionCode": 1,
       "permissions": ["CAMERA", "CAMERA_ROLL"]
     },
     "web": {
